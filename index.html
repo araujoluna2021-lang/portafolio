@@ -292,27 +292,73 @@
 <footer>© 2026 paraujoIab — Todos los derechos reservados</footer>
 
 <script>
-    const serverData = [
-        { name:"MineRush Network", badge:"Founder", status:"offline", logo:"mine-rush.png", text:"Llegué como Founder junto a Fakerki08 en agosto de 2024 por mi experiencia previa. Me encargué de la organización del staff, toma de decisiones y planificación del servidor. Alcanzamos 50 usuarios simultáneos. Me retiré por problemas internos con el dueño principal." },
-        { name:"MineChaos Network", badge:"Founder", status:"offline", logo:"mine-chaos.png", text:"Proyecto iniciado junto a Fakerki08 el 17 de marzo de 2024. Gestioné la organización general, la estructura y la coordinación del equipo. El servidor cerró por inactividad del staff y diferencias organizativas con mi socio." },
-        { name:"MineGlow Network", badge:"Manager", status:"offline", logo:"mine-glow.png", text:"Ingresé como Manager gracias a mi experiencia. Me retiré por la inactividad prolongada tanto del servidor como de los dueños, lo que impedía avanzar con el proyecto." },
-        { name:"MineLow Network", badge:"Sr Mod", status:"online", logo:"mine-low.png", text:"Servidor donde actualmente trabajo como Sr Mod desde el 19 de diciembre de 2025. Ha sido una de mis experiencias más enriquecedoras y lo recuerdo con mucho aprecio." },
-        { name:"MineSkill Network", badge:"Manager", status:"offline", logo:"mine-skill.png", text:"Entré como Manager por mis conocimientos en comandos y gestión de staff. El servidor cerró porque el owner no generaba las ganancias necesarias para sostenerlo." },
-        { name:"MineDark Network", badge:"Manager", status:"offline", logo:"mine-dark.png", text:"Ingresé como Manager por mi experiencia. En mi primera semana identifiqué y retiré a 2 staffs que abusaban de la confianza del dueño, lo que fortaleció mucho el equipo." },
-        { name:"MineDash Network", badge:"Owner", status:"online", logo:"mine-dash.png", text:"Soy Owner de MineDash, proyecto que fusionamos con KeniBox junto al streamer TheElivan, unificando ambas comunidades bajo una sola red." },
-        { name:"EgoCraft Network", badge:"Manager", status:"online", logo:"ego-craft.png", text:"Ingresé como Manager por mi experiencia y conocimientos. El servidor aún no ha abierto oficialmente, pero ya me encuentro activo organizando el equipo y la estructura." },
-        { name:"EskMC Network", badge:"Administrador", status:"online", logo:"esk-mc.png", text:"Servidor de box pvp donde entré directamente como Administrador gracias a mi trayectoria como staff y manager en networks anteriores." },
-        { name:"KeniBox Network", badge:"Owner", status:"online", logo:"keni-box.png", text:"Proyecto donde soy Owner junto a Legendario, también dueño de MineLow. Entramos como Founders por nuestro conocimiento en plugins, configuración y la confianza que se tiene en nuestro trabajo." },
-        { name:"MineIce Network", badge:"Administrador", status:"offline", logo:"mine-ice.png", text:"Ingresé como Administrador por mi experiencia, y porque uno de los dueños ya había trabajado conmigo antes. El servidor está poco activo actualmente por falta de jugadores." },
-        { name:"NightBox Network", badge:"Señor Administrador", status:"online", logo:"night-box.png", text:"Ingresé como Señor Administrador por mis conocimientos en plugins, configuraciones y permisos. Nightbox es un servidor que siempre me gustó como jugador, así que poder trabajar aquí es algo especial." }
-    ];
+// ════════════════════════════════════════════════════════════════════════════════
+// SINCRONIZACIÓN CON ADMIN.HTML - SOLO AGREGAR ESTOS BLOQUES
+// ════════════════════════════════════════════════════════════════════════════════
 
-    const reviewsData = [
-        { owner:"! UserƬhس", server:"MineRush Network", text:"La Administración Agradece todo lo que a hecho paraujoIab, lo recomendamos al 100%, fue muy util dentro de nuestro proyecto, si lo contratar creanme que no se arrepentiran.", stars:5 },
-        { owner:"tito", server:"MineSkill Network", text:"El trabajo de paraujolab fue muy bueno, conseguimos muchos buenos staff y user nuevos, en su trabajo como manager no tuvo casi ningun error y logro completar sus tareas muy rapido, agradezco profundamente su colaboracion.", stars:5 },
-        { owner:"Keyxzz", server:"MineDark Network", text:"Es un buen manager, sabe lo que hace tanto expresándose y organizandose además de eso es confiable 100% recomendado.", stars:5 },
-        { owner:"SrCapoo", server:"EgoCraft Network", text:"La verdad super recomendado, muy dedicado en su trabajo y en lo que hace, lo hace super bien, aunque lo tuvimos poco tiempo trabajando en nuestro servidor, lo que hizo lo hizo perfecto.", stars:5 }
-    ];
+// Datos por defecto de SERVIDORES
+const DEFAULT_SERVER_DATA = [
+  { name:"MineRush Network", badge:"Founder", status:"offline", logo:"mine-rush.png", text:"Llegué como Founder junto a Fakerki08 en agosto de 2024 por mi experiencia previa. Me encargué de la organización del staff, toma de decisiones y planificación del servidor. Alcanzamos 50 usuarios simultáneos. Me retiré por problemas internos con el dueño principal." },
+  { name:"MineChaos Network", badge:"Founder", status:"offline", logo:"mine-chaos.png", text:"Proyecto iniciado junto a Fakerki08 el 17 de marzo de 2024. Gestioné la organización general, la estructura y la coordinación del equipo. El servidor cerró por inactividad del staff y diferencias organizativas con mi socio." },
+  { name:"MineGlow Network", badge:"Manager", status:"offline", logo:"mine-glow.png", text:"Ingresé como Manager gracias a mi experiencia. Me retiré por la inactividad prolongada tanto del servidor como de los dueños, lo que impedía avanzar con el proyecto." },
+  { name:"MineLow Network", badge:"Sr Mod", status:"online", logo:"mine-low.png", text:"Servidor donde actualmente trabajo como Sr Mod desde el 19 de diciembre de 2025. Ha sido una de mis experiencias más enriquecedoras y lo recuerdo con mucho aprecio." },
+  { name:"MineSkill Network", badge:"Manager", status:"offline", logo:"mine-skill.png", text:"Entré como Manager por mis conocimientos en comandos y gestión de staff. El servidor cerró porque el owner no generaba las ganancias necesarias para sostenerlo." },
+  { name:"MineDark Network", badge:"Manager", status:"offline", logo:"mine-dark.png", text:"Ingresé como Manager por mi experiencia. En mi primera semana identifiqué y retiré a 2 staffs que abusaban de la confianza del dueño, lo que fortaleció mucho el equipo." },
+  { name:"MineDash Network", badge:"Owner", status:"online", logo:"mine-dash.png", text:"Soy Owner de MineDash, proyecto que fusionamos con KeniBox junto al streamer TheElivan, unificando ambas comunidades bajo una sola red." },
+  { name:"EgoCraft Network", badge:"Manager", status:"online", logo:"ego-craft.png", text:"Ingresé como Manager por mi experiencia y conocimientos. El servidor aún no ha abierto oficialmente, pero ya me encuentro activo organizando el equipo y la estructura." },
+  { name:"EskMC Network", badge:"Administrador", status:"online", logo:"esk-mc.png", text:"Servidor de box pvp donde entré directamente como Administrador gracias a mi trayectoria como staff y manager en networks anteriores." },
+  { name:"KeniBox Network", badge:"Owner", status:"online", logo:"keni-box.png", text:"Proyecto donde soy Owner junto a Legendario, también dueño de MineLow. Entramos como Founders por nuestro conocimiento en plugins, configuración y la confianza que se tiene en nuestro trabajo." },
+  { name:"MineIce Network", badge:"Administrador", status:"offline", logo:"mine-ice.png", text:"Ingresé como Administrador por mi experiencia, y porque uno de los dueños ya había trabajado conmigo antes. El servidor está poco activo actualmente por falta de jugadores." },
+  { name:"NightBox Network", badge:"Señor Administrador", status:"online", logo:"night-box.png", text:"Ingresé como Señor Administrador por mis conocimientos en plugins, configuraciones y permisos. Nightbox es un servidor que siempre me gustó como jugador, así que poder trabajar aquí es algo especial." }
+];
+
+// Datos por defecto de RESEÑAS
+const DEFAULT_REVIEWS_DATA = [
+  { owner:"! UserƬhس", server:"MineRush Network", text:"La Administración Agradece todo lo que a hecho paraujoIab, lo recomendamos al 100%, fue muy util dentro de nuestro proyecto, si lo contratar creanme que no se arrepentiran.", stars:5 },
+  { owner:"tito", server:"MineSkill Network", text:"El trabajo de paraujolab fue muy bueno, conseguimos muchos buenos staff y user nuevos, en su trabajo como manager no tuvo casi ningun error y logro completar sus tareas muy rapido, agradezco profundamente su colaboracion.", stars:5 },
+  { owner:"Keyxzz", server:"MineDark Network", text:"Es un buen manager, sabe lo que hace tanto expresándose y organizandose además de eso es confiable 100% recomendado.", stars:5 },
+  { owner:"SrCapoo", server:"EgoCraft Network", text:"La verdad super recomendado, muy dedicado en su trabajo y en lo que hace, lo hace super bien, aunque lo tuvimos poco tiempo trabajando en nuestro servidor, lo que hizo lo hizo perfecto.", stars:5 }
+];
+
+// Funciones para cargar desde localStorage
+function loadServerData() {
+  try {
+    var stored = localStorage.getItem('pa_servers');
+    if (stored) return JSON.parse(stored);
+  } catch(e) {}
+  return DEFAULT_SERVER_DATA;
+}
+
+function loadReviewsData() {
+  try {
+    var stored = localStorage.getItem('pa_reviews');
+    if (stored) return JSON.parse(stored);
+  } catch(e) {}
+  return DEFAULT_REVIEWS_DATA;
+}
+
+// Cargar datos (desde admin.html si existen, sino los por defecto)
+var serverData = loadServerData();
+var reviewsData = loadReviewsData();
+
+// Escuchar cambios en vivo desde admin.html
+window.addEventListener('storage', function(e) {
+  if (e.key === 'pa_updated') {
+    serverData = loadServerData();
+    reviewsData = loadReviewsData();
+    var activePage = document.querySelector('.page.active');
+    if (activePage && activePage.id === 'page-experiencia') {
+      renderTimeline();
+    }
+    if (activePage && activePage.id === 'page-reseñas') {
+      renderReviews();
+    }
+  }
+});
+
+// ════════════════════════════════════════════════════════════════════════════════
+// FIN DE SINCRONIZACIÓN - TODO LO DEMÁS SIGUE IGUAL
+// ════════════════════════════════════════════════════════════════════════════════
 
     const CONTACT_MSG = '⚠️ No tengo información específica sobre eso.<br><br>📧 Contáctame por email: <a href="mailto:araujoluna2021@gmail.com">araujoluna2021@gmail.com</a><br>💬 o por Discord: <a href="https://discord.com/users/962462312160182342" target="_blank">andyaleyt</a>';
     const KB = [
@@ -396,7 +442,7 @@
     function renderReviews() {
         const container = document.getElementById('reviews-container');
         if (!container) return;
-        container.innerHTML = reviewsData.map(rev => `<div class="review-card"><div class="review-text">“${rev.text}”</div><div class="review-author"><div class="review-avatar">${rev.owner.charAt(0)}</div><div><div class="review-name">${rev.owner}</div><div class="review-server">Dueño de ${rev.server}</div><div class="review-stars">${'★'.repeat(rev.stars)}${'☆'.repeat(5-rev.stars)}</div></div></div></div>`).join('');
+        container.innerHTML = reviewsData.map(rev => `<div class="review-card"><div class="review-text">"${rev.text}"</div><div class="review-author"><div class="review-avatar">${rev.owner.charAt(0)}</div><div><div class="review-name">${rev.owner}</div><div class="review-server">Dueño de ${rev.server}</div><div class="review-stars">${'★'.repeat(rev.stars)}${'☆'.repeat(5-rev.stars)}</div></div></div></div>`).join('');
     }
 
     function animateSkills() { document.querySelectorAll('.skill-bar-fill').forEach(bar => { const w = bar.getAttribute('data-width'); if (w) bar.style.width = w + '%'; }); }
